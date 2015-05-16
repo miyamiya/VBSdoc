@@ -646,7 +646,11 @@ Private Function GetMethodDef(ByRef code, ByVal includePrivate)
 				d.Add "Metadata", tags
 
 				log.LogDebug "Adding procedure/function " & .Item(7)
-				methods.Add .Item(7), d
+				if ( methods.exists( .Item(7) ) ) Then
+					log.LogDebug "> Found duplicate " & .Item(7)
+				Else
+					methods.Add .Item(7), d
+				End If
 			End If
 		End With
 	Next
